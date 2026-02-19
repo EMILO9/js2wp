@@ -9,49 +9,68 @@ import { GetConfig } from "@cli/core/GetConfig";
 import { GenPHP } from "@cli/core/GenPHP";
 import { GenJS } from "@cli/core/GenJS";
 import { execa } from "execa";
+import { remove } from "fs-extra";
 
 const cliName = parsePackageName(pkg.name).fullName;
-const tasks = new Listr([]);
 const program = new Command();
 const explorer = cosmiconfig(cliName, {
-  loaders: {
-    ".ts": TypeScriptLoader(),
-  },
+	loaders: {
+		".ts": TypeScriptLoader(),
+	},
 });
 
 program.name(cliName).description(pkg.description).version(pkg.version);
 
 program
-  .command("build")
-  .description("...")
-  .action(async () => {
-    const rawConfig = await explorer.search();
-    const config = await GetConfig(rawConfig);
-    const { computed: c } = config;
+	.command("build")
+	.description("...")
+	.action(async () => {
+		const rawConfig = await explorer.search();
+		const config = await GetConfig(rawConfig);
+		const { computed: c } = config;
 
-    tasks.add([
-      { title: "PHP", task: () => GenPHP(config) },
-      { title: "JS", task: () => GenJS(config) },
-      {
-        title: "POT.PHP",
-        task: () =>
-          execa("npx", [
-            "makepot",
-            `.plugins/${c.slug_kebab}`,
-            `.plugins/${c.slug_kebab}/languages`,
-          ]),
-      },
-      {
-        title: "POT.JS",
-        task: () =>
-          execa("npx", [
-            "makepot",
-            `index.ts`,
-            `.plugins/${c.slug_kebab}/languages`,
-          ]),
-      },
-    ]);
-    await tasks.run();
-  });
+		const tasks = new Listr([
+			{ title: " 🧹 Cleaning old build", task: () => remove(".plugins") },
+			{
+				title: " 💻 Building plugin code",
+				task: () =>
+					new Listr([
+						{
+							title: " ⚡ Generating PHP files",
+							task: () => GenPHP(config),
+						},
+						{
+							title: " ✨ Generating JS files",
+							task: () => GenJS(config),
+						},
+					]),
+			},
+			{
+				title: " 🌐 Generating translation files",
+				task: () =>
+					new Listr([
+						{
+							title: "📄 POT for PHP",
+							task: () =>
+								execa("npx", [
+									"makepot",
+									`.plugins/${c.slug_kebab}`,
+									`.plugins/${c.slug_kebab}/languages`,
+								]),
+						},
+						{
+							title: "📝 POT for JS",
+							task: () =>
+								execa("npx", [
+									"makepot",
+									"src",
+									"js-translations",
+								]),
+						},
+					]),
+			},
+		]);
+		await tasks.run();
+	});
 
 program.parse();

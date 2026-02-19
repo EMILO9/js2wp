@@ -1,62 +1,62 @@
 {
-  "name": "js2wp",
-  "version": "1.0.0",
-  "description": "...",
-  "main": "./dist/lib/index.cjs",
-  "module": "./dist/lib/index.mjs",
-  "types": "./dist/lib/index.d.cts",
-  "exports": {
-    ".": {
-      "require": {
-        "default": "./dist/lib/index.cjs",
-        "types": "./dist/lib/index.d.cts"
-      },
-      "import": {
-        "default": "./dist/lib/index.mjs",
-        "types": "./dist/lib/index.d.mts"
-      }
-    }
-  },
-  "bin": {
-    "js2wp": "./dist/cli/index.mjs"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "attw": "attw --pack ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EMILO9/js2wp.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/EMILO9/js2wp/issues"
-  },
-  "homepage": "https://github.com/EMILO9/js2wp#readme",
-  "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.2",
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^25.2.3",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@wp-blocks/make-pot": "^1.6.5",
-    "change-case": "^5.4.4",
-    "commander": "^14.0.3",
-    "cosmiconfig": "^9.0.0",
-    "cosmiconfig-typescript-loader": "^6.2.0",
-    "execa": "^9.6.1",
-    "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.3",
-    "handlebars": "^4.7.8",
-    "just-merge": "^3.2.0",
-    "listr2": "^10.1.0",
-    "parse-packagejson-name": "^1.1.0",
-    "vite": "^7.3.1",
-    "zod": "^4.3.6"
-  }
+	"name": "js2wp",
+	"version": "1.0.0",
+	"description": "...",
+	"main": "./dist/lib/index.cjs",
+	"module": "./dist/lib/index.mjs",
+	"types": "./dist/lib/index.d.cts",
+	"exports": {
+		".": {
+			"require": {
+				"default": "./dist/lib/index.cjs",
+				"types": "./dist/lib/index.d.cts"
+			},
+			"import": {
+				"default": "./dist/lib/index.mjs",
+				"types": "./dist/lib/index.d.mts"
+			}
+		}
+	},
+	"bin": {
+		"js2wp": "./dist/cli/index.mjs"
+	},
+	"scripts": {
+		"build": "tsdown",
+		"attw": "attw --pack ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/EMILO9/js2wp.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"type": "module",
+	"bugs": {
+		"url": "https://github.com/EMILO9/js2wp/issues"
+	},
+	"homepage": "https://github.com/EMILO9/js2wp#readme",
+	"devDependencies": {
+		"@arethetypeswrong/cli": "^0.18.2",
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^25.2.3",
+		"tsdown": "^0.20.3",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@wp-blocks/make-pot": "^1.6.5",
+		"change-case": "^5.4.4",
+		"commander": "^14.0.3",
+		"cosmiconfig": "^9.0.0",
+		"cosmiconfig-typescript-loader": "^6.2.0",
+		"execa": "^9.6.1",
+		"fast-glob": "^3.3.3",
+		"fs-extra": "^11.3.3",
+		"handlebars": "^4.7.8",
+		"just-merge": "^3.2.0",
+		"listr2": "^10.1.0",
+		"parse-packagejson-name": "^1.1.0",
+		"vite": "^7.3.1",
+		"zod": "^4.3.6"
+	}
 }
