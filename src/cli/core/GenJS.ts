@@ -13,14 +13,16 @@ export async function GenJS(config: ConfigResult) {
     root: process.cwd(),
     build: {
       outDir: path.join(process.cwd(), ".plugins", c.slug_kebab),
+      emptyOutDir: false,
       lib: {
         entry: entry,
         name: c.slug_constant,
         formats: ["iife"],
-        fileName: () => `${c.js_path}.js`,
-        cssFileName: c.css_path,
+        fileName: () => `assets/js/${c.slug_kebab}.js`,
+        cssFileName: `assets/css/${c.slug_kebab}`,
       },
       cssCodeSplit: false,
+      assetsDir: "assets",
     },
   });
 }

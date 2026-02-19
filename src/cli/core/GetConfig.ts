@@ -17,12 +17,6 @@ export async function GetConfig(config: CosmiconfigResult) {
     computed: {
       slug_kebab: kebabCase(headers.pluginName),
       slug_constant: constantCase(headers.pluginName),
-      get js_path() {
-        return `assets/js/${this.slug_kebab}`;
-      },
-      get css_path() {
-        return `assets/css/${this.slug_kebab}`;
-      },
     },
   });
   return combined;

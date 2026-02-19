@@ -1,0 +1,59 @@
+<?php
+/*
+Plugin Name: My Plugin
+Description: A basic WordPress plugin template with translation support.
+Version: 1.0
+Author: Your Name
+Text Domain: my-plugin
+Domain Path: /languages
+*/
+
+defined('ABSPATH') || exit;
+
+// Load plugin translations
+function my_plugin_load_textdomain() {
+    load_plugin_textdomain(
+        'my-plugin', // Text domain
+        false,
+        basename(dirname(__FILE__)) . '/languages'
+    );
+}
+add_action('plugins_loaded', 'my_plugin_load_textdomain');
+
+// Example: Admin notice with translatable text
+function my_plugin_admin_notice() {
+    ?>
+    <div class="notice notice-success is-dismissible">
+        <p><?php echo esc_html(__('My Plugin activated successfully!', 'my-plugin')); ?></p>
+    </div>
+    <?php
+}
+add_action('admin_notices', 'my_plugin_admin_notice');
+
+// Example: Front-end translatable string
+function my_plugin_frontend_message() {
+    return sprintf(
+        '<p>%s</p>',
+        esc_html(__('Welcome to My Plugin!', 'my-plugin'))
+    );
+}
+add_shortcode('my_plugin_welcome', 'my_plugin_frontend_message');
+
+// Enqueue assets (JS + CSS)
+function my_plugin_enqueue_assets() {
+    wp_enqueue_script(
+        'my-plugin-js',
+        plugins_url('.plugins/my-plugin/assets/js/my-plugin.js', __FILE__),
+        [],
+        filemtime(plugin_dir_path(__FILE__) . '.plugins/my-plugin/assets/js/my-plugin.js'),
+        true
+    );
+
+    wp_enqueue_style(
+        'my-plugin-css',
+        plugins_url('.plugins/my-plugin/assets/css/my-plugin.css', __FILE__),
+        [],
+        filemtime(plugin_dir_path(__FILE__) . '.plugins/my-plugin/assets/css/my-plugin.css')
+    );
+}
+add_action('wp_enqueue_scripts', 'my_plugin_enqueue_assets');
