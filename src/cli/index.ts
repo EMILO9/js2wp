@@ -14,57 +14,48 @@ import { remove } from "fs-extra";
 const cliName = parsePackageName(pkg.name).fullName;
 const program = new Command();
 const explorer = cosmiconfig(cliName, {
-  loaders: {
-    ".ts": TypeScriptLoader(),
-  },
+	loaders: {
+		".ts": TypeScriptLoader(),
+	},
 });
 
 program.name(cliName).description(pkg.description).version(pkg.version);
 
 program
-  .command("build")
-  .description("...")
-  .action(async () => {
-    const rawConfig = await explorer.search();
-    const config = await GetConfig(rawConfig);
-    const { computed: c } = config;
-    const tasks = new Listr([
-      { title: " 🧹 Cleaning old build", task: () => remove(".plugins") },
-      {
-        title: " 💻 Building plugin code",
-        task: () =>
-          new Listr([
-            {
-              title: " ⚡ Generating PHP files",
-              task: () => GenPHP(config),
-            },
-            {
-              title: " ✨ Generating JS files",
-              task: () => GenJS(config),
-            },
-          ]),
-      },
-      {
-        title: " 🌐 Generating translation files",
-        task: () =>
-          execa(
-            "makepot",
-            [
-              `.plugins/${c.slug_kebab}`,
-              `.plugins/${c.slug_kebab}/languages`,
-              "--json",
-              "--silent",
-            ],
-            {
-              preferLocal: true,
-              cwd: process.cwd(),
-              stdio: "inherit",
-              shell: true,
-            },
-          ),
-      },
-    ]);
-    await tasks.run();
-  });
+	.command("build")
+	.description("...")
+	.action(async () => {
+		const rawConfig = await explorer.search();
+		const config = await GetConfig(rawConfig);
+		const { computed: c } = config;
+		const tasks = new Listr([
+			{ title: " 🧹 Cleaning old build", task: () => remove(".plugins") },
+			{
+				title: " 💻 Building plugin code",
+				task: () =>
+					new Listr([
+						{
+							title: " ⚡ Generating PHP files",
+							task: () => GenPHP(config),
+						},
+						{
+							title: " ✨ Generating JS files",
+							task: () => GenJS(config),
+						},
+					]),
+			},
+			{
+				title: " 🌐 Generating translation files",
+				task: () =>
+					execa("npx", [
+						"makepot",
+						`.plugins/${c.slug_kebab}`,
+						`.plugins/${c.slug_kebab}/languages`,
+						"--json",
+					]),
+			},
+		]);
+		await tasks.run();
+	});
 
 program.parse();
