@@ -10,17 +10,21 @@ Domain Path: /languages
 
 defined('ABSPATH') || exit;
 
-// Load plugin translations
+/**
+ * Load plugin translations
+ */
 function my_plugin_load_textdomain() {
     load_plugin_textdomain(
-        'my-plugin', // Text domain
-        false,
-        basename(dirname(__FILE__)) . '/languages'
+        'my-plugin',             // Text domain
+        false,                   // Deprecated argument
+        dirname(plugin_basename(__FILE__)) . '/languages' // Path to /languages
     );
 }
 add_action('plugins_loaded', 'my_plugin_load_textdomain');
 
-// Example: Admin notice with translatable text
+/**
+ * Admin notice (translatable)
+ */
 function my_plugin_admin_notice() {
     ?>
     <div class="notice notice-success is-dismissible">
@@ -30,7 +34,9 @@ function my_plugin_admin_notice() {
 }
 add_action('admin_notices', 'my_plugin_admin_notice');
 
-// Example: Front-end translatable string
+/**
+ * Frontend message shortcode (translatable)
+ */
 function my_plugin_frontend_message() {
     return sprintf(
         '<p>%s</p>',
@@ -39,21 +45,33 @@ function my_plugin_frontend_message() {
 }
 add_shortcode('my_plugin_welcome', 'my_plugin_frontend_message');
 
-// Enqueue assets (JS + CSS)
+/**
+ * Enqueue JS & CSS assets
+ */
 function my_plugin_enqueue_assets() {
+    $plugin_url  = plugin_dir_url(__FILE__);
+    $plugin_path = plugin_dir_path(__FILE__);
+
+    // JavaScript
     wp_enqueue_script(
         'my-plugin-js',
-        plugins_url('.plugins/my-plugin/assets/js/my-plugin.js', __FILE__),
-        [],
-        filemtime(plugin_dir_path(__FILE__) . '.plugins/my-plugin/assets/js/my-plugin.js'),
+        $plugin_url . 'assets/js/my-plugin.js',
+        ['wp-i18n'], // dependency on WP i18n for JS translations
+        filemtime($plugin_path . 'assets/js/my-plugin.js'),
         true
     );
 
+    // CSS
     wp_enqueue_style(
         'my-plugin-css',
-        plugins_url('.plugins/my-plugin/assets/css/my-plugin.css', __FILE__),
+        $plugin_url . 'assets/css/my-plugin.css',
         [],
-        filemtime(plugin_dir_path(__FILE__) . '.plugins/my-plugin/assets/css/my-plugin.css')
+        filemtime($plugin_path . 'assets/css/my-plugin.css')
     );
+
+    // Make translations available in JS
+    if (function_exists('wp_set_script_translations')) {
+        wp_set_script_translations('my-plugin-js', 'my-plugin', $plugin_path . 'languages');
+    }
 }
 add_action('wp_enqueue_scripts', 'my_plugin_enqueue_assets');
