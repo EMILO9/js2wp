@@ -51,7 +51,7 @@ program
 						"makepot",
 						`.plugins/${c.slug_kebab}`,
 						`.plugins/${c.slug_kebab}/languages`,
-						"--json",
+						"--silent",
 					]),
 			},
 		]);
