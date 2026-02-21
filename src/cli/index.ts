@@ -46,14 +46,13 @@ program
 			},
 			{
 				title: " 🌐 Generating translation files",
-				task: () => {
+				task: () =>
 					execa("npx", [
 						"makepot",
 						`.plugins/${c.slug_kebab}`,
 						`.plugins/${c.slug_kebab}/languages`,
-						`--silent`
-					]);
-				},
+						"--silent",
+					]),
 			},
 		]);
 		await tasks.run();
