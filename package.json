@@ -1,6 +1,6 @@
 {
 	"name": "@emilo/js2wp",
-	"version": "1.0.0",
+	"version": "1.0.0-test.0",
 	"description": "...",
 	"main": "./dist/lib/index.cjs",
 	"module": "./dist/lib/index.mjs",
@@ -23,7 +23,7 @@
 	"scripts": {
 		"build": "tsdown",
 		"attw": "attw --pack .",
-        "test": "node --test"
+		"test": "node --test"
 	},
 	"repository": {
 		"type": "git",
