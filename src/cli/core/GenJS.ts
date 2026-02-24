@@ -1,29 +1,23 @@
-import type { ConfigResult } from "@cli/core/GetConfig";
+import type { ConfigSchemaOutput } from "@cli/schemas/ConfigSchema";
 import path from "node:path";
 import { build } from "vite";
-import fg from "fast-glob";
 
-export async function GenJS(config: ConfigResult) {
-	const { computed: c, build: b } = config;
-	const entry = b.entry
-		? b.entry
-		: ((
-				await fg(["src/{index,main}.{ts,js}", "{index,main}.{ts,js}"])
-			)[0] ?? "src/index.ts");
+export async function GenJS(config: ConfigSchemaOutput) {
+	const { derived: d, build: b } = config;
 	await build({
 		root: process.cwd(),
 		logLevel: "silent",
 		build: {
 			rollupOptions: { external: ["@wordpress/i18n"] },
-			outDir: path.join(process.cwd(), ".plugins", c.slug_kebab),
+			outDir: path.join(".plugins", d.pluginNameKebab),
 			emptyOutDir: false,
 			minify: false,
 			lib: {
-				entry: entry,
-				name: c.slug_constant,
+				entry: b.entry,
+				name: d.pluginNameConstant,
 				formats: ["iife"],
-				fileName: () => `js/${c.slug_kebab}.js`,
-				cssFileName: `css/${c.slug_kebab}`,
+				fileName: () => `js/${d.pluginNameKebab}.js`,
+				cssFileName: `css/${d.pluginNameKebab}`,
 			},
 			assetsInlineLimit: 0,
 			cssCodeSplit: true,

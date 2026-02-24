@@ -1,5 +1,5 @@
-import type { Config } from "@cli/core/GetConfig";
+import type { ConfigSchemaInput } from "@cli/schemas/ConfigSchema";
 
-export function defineConfig(config: Config): Config {
-  return config;
+export function defineConfig(config: ConfigSchemaInput): ConfigSchemaInput {
+	return config;
 }

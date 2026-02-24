@@ -1,13 +1,8 @@
 import { z } from "zod";
+import { HeaderSchema } from "@cli/schemas/HeaderSchema";
+import { BuildSchema } from "@cli/schemas/BuildSchema";
 
 export const BaseSchema = z.object({
-  headers: z.object({
-    pluginName: z.string().trim().nonempty().default("My Plugin!"),
-  }),
-  build: z
-    .object({
-      entry: z.string().trim().nonempty().optional(),
-    })
-    .default({}),
+	headers: HeaderSchema.default(HeaderSchema.parse({})),
+	build: BuildSchema.default(BuildSchema.parse({})),
 });
-

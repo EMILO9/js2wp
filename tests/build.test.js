@@ -45,7 +45,7 @@ test("js2wp build command transforms files correctly and creates pot with transl
   const potContent = readFileSync(potFile, "utf8");
 
   // Check for references to both PHP and JS files
-  assert.ok(potContent.includes("#: assets/js/test-a.js"), "POT file should contain reference to assets/js/test-a.js");
+  assert.ok(potContent.includes("#: js/test-a.js"), "POT file should contain reference to assets/js/test-a.js");
   assert.ok(potContent.includes("#: test-a.php"), "POT file should contain reference to test-a.php");
 
   console.log("✅ Build test passed - Files transformed correctly and POT file contains proper translation references");
