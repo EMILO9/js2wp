@@ -1,12 +1,11 @@
-<p align="center">
-	<img src="assets/logo.svg" width="220" alt="JS2WP logo" />
-</p>
-
-<h1 align="center" style="font-family: &quot;Orbitron&quot;, monospace">
+<h1
+	align="center"
+	style="font-family: &quot;Orbitron&quot;, monospace; font-size: 4em"
+>
 	JS2WP
 </h1>
 
-<p align="center" style="font-size: 1.1em">
+<p align="center">
 	⚡ Generate WordPress plugins from JavaScript projects effortlessly ⚡
 </p>
 
@@ -29,14 +28,7 @@
 
 <h2>Install</h2>
 
-<pre
-	style="
-		background: #1e1e1e;
-		color: #f8f8f2;
-		padding: 10px;
-		border-radius: 6px;
-	"
->
+<pre>
 npm install @emilo/js2wp
 </pre>
 
@@ -44,7 +36,7 @@ npm install @emilo/js2wp
 
 <h2>Features</h2>
 
-<ul style="line-height: 1.6em; font-family: &quot;Courier New&quot;, monospace">
+<ul>
 	<li>🚀 Generate WordPress plugins automatically from JS projects</li>
 	<li>⚙️ Simple configuration file support (.js, .ts, .json, etc.)</li>
 	<li>💻 CLI workflow using <code>js2wp build</code></li>
