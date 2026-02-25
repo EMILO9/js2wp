@@ -45,12 +45,12 @@
 npm install @emilo/js2wp
 </pre>
 <h2>Features</h2>
-
 <ul
 	style="
 		line-height: 1.7em;
 		font-family: &quot;Courier New&quot;, monospace;
 		color: #333;
+		padding-left: 0.5em;
 	"
 >
 	<li>🚀 Generate WordPress plugins automatically from JS projects</li>
