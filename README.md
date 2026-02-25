@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/js2wp?color=blue&label=npm" alt="npm version">
-  <img src="https://img.shields.io/npm/dm/js2wp?color=green&label=downloads" alt="downloads">
-  <img src="https://img.shields.io/npm/l/js2wp?color=orange&label=license" alt="license">
+  <img src="https://img.shields.io/npm/v/@emilo/js2wp?color=blue&label=npm" alt="npm version">
+  <img src="https://img.shields.io/npm/dm/@emilo/js2wp?color=green&label=downloads" alt="downloads">
+  <img src="https://img.shields.io/npm/l/@emilo/js2wp?color=orange&label=license" alt="license">
 </p>
 
 <hr>
@@ -15,7 +15,7 @@
 <h2>Install</h2>
 
 <pre style="background:#1e1e1e;color:#f8f8f2;padding:10px;border-radius:6px;">
-npm install js2wp
+npm install @emilo/js2wp
 </pre>
 
 <hr>
