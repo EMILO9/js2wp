@@ -32,10 +32,10 @@ test("js2wp build command transforms files correctly and creates pot with transl
 
   // Test if the files are transformed correctly
   const phpFile = path.join(pluginsDir, "test-a", "test-a.php");
-  const jsFile = path.join(pluginsDir, "test-a", "assets", "js", "test-a.js");
+  const jsFile = path.join(pluginsDir, "test-a", "js", "test-a.js");
 
   assert.ok(existsSync(phpFile), "PHP file should be generated at ./.plugins/test-a/test-a.php");
-  assert.ok(existsSync(jsFile), "JS file should be generated at ./.plugins/test-a/assets/js/test-a.js");
+  assert.ok(existsSync(jsFile), "JS file should be generated at ./.plugins/test-a/js/test-a.js");
 
   // Test if the pot file is created
   const potFile = path.join(pluginsDir, "test-a", "languages", "test-a.pot");
@@ -45,7 +45,7 @@ test("js2wp build command transforms files correctly and creates pot with transl
   const potContent = readFileSync(potFile, "utf8");
 
   // Check for references to both PHP and JS files
-  assert.ok(potContent.includes("#: js/test-a.js"), "POT file should contain reference to assets/js/test-a.js");
+  assert.ok(potContent.includes("#: js/test-a.js"), "POT file should contain reference to js/test-a.js");
   assert.ok(potContent.includes("#: test-a.php"), "POT file should contain reference to test-a.php");
 
   console.log("✅ Build test passed - Files transformed correctly and POT file contains proper translation references");
