@@ -23,7 +23,7 @@ test("js2wp build command transforms files correctly and creates pot with transl
   // Run js2wp build command
   const result = await execa("npx", ["js2wp", "build"], {
     cwd: fixtureDir,
-    reject: false,
+    reject: true,
     timeout: 15000
   });
 
