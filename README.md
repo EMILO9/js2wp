@@ -15,6 +15,7 @@
 <p align="center" style="font-size: 1.2em; color: #555">
 	Generate WordPress plugins from JavaScript projects effortlessly
 </p>
+
 <p align="center" style="margin-top: 0.5em; margin-bottom: 2em">
 	<img
 		src="https://img.shields.io/npm/v/@emilo/js2wp?color=blue&label=npm"
@@ -31,7 +32,11 @@
 		alt="license"
 	/>
 </p>
+
+<hr />
+
 <h2>Install</h2>
+
 <pre
 	style="
 		background: #1e1e1e;
@@ -44,7 +49,11 @@
 >
 npm install @emilo/js2wp
 </pre>
+
+<hr />
+
 <h2>Features</h2>
+
 <ul
 	style="
 		line-height: 1.7em;
@@ -59,3 +68,56 @@ npm install @emilo/js2wp
 	<li>🧩 Automatic plugin boilerplate creation</li>
 	<li>✨ Integrates with modern JavaScript tooling</li>
 </ul>
+
+<hr />
+
+<h2>Configuration Schema</h2>
+
+<p>Example <code>js2wp.config.js</code> structure:</p>
+
+<table style="width: 100%; border-collapse: collapse; text-align: left">
+	<thead>
+		<tr style="background: #1e90ff; color: white">
+			<th style="padding: 8px; border: 1px solid #ccc">Field</th>
+			<th style="padding: 8px; border: 1px solid #ccc">Type</th>
+			<th style="padding: 8px; border: 1px solid #ccc">Description</th>
+			<th style="padding: 8px; border: 1px solid #ccc">Optional</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="padding: 8px; border: 1px solid #ccc">template</td>
+			<td style="padding: 8px; border: 1px solid #ccc">"menu_page"</td>
+			<td style="padding: 8px; border: 1px solid #ccc">
+				Which plugin template to generate
+			</td>
+			<td style="padding: 8px; border: 1px solid #ccc">No</td>
+		</tr>
+		<tr>
+			<td style="padding: 8px; border: 1px solid #ccc">options</td>
+			<td style="padding: 8px; border: 1px solid #ccc">
+				Record&lt;string, never&gt;
+			</td>
+			<td style="padding: 8px; border: 1px solid #ccc">
+				Extra template-specific options
+			</td>
+			<td style="padding: 8px; border: 1px solid #ccc">No</td>
+		</tr>
+		<tr>
+			<td style="padding: 8px; border: 1px solid #ccc">headers</td>
+			<td style="padding: 8px; border: 1px solid #ccc">Object</td>
+			<td style="padding: 8px; border: 1px solid #ccc">
+				WordPress plugin headers (name, version, author, etc.)
+			</td>
+			<td style="padding: 8px; border: 1px solid #ccc">Yes</td>
+		</tr>
+		<tr>
+			<td style="padding: 8px; border: 1px solid #ccc">build</td>
+			<td style="padding: 8px; border: 1px solid #ccc">Object</td>
+			<td style="padding: 8px; border: 1px solid #ccc">
+				Build configuration (e.g., src & output folders)
+			</td>
+			<td style="padding: 8px; border: 1px solid #ccc">Yes</td>
+		</tr>
+	</tbody>
+</table>
